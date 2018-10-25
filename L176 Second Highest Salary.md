@@ -19,27 +19,27 @@ For example, given the above Employee table, the query should return 200 as the 
 
 (1)
 
-select max(Salary) as SecondHighestSalary 
-from Employee 
-where Salary < (select max(Salary) from Employee); 
+		select max(Salary) as SecondHighestSalary 
+		from Employee 
+		where Salary < (select max(Salary) from Employee); 
 
 (2)
 
-select isnull(
-(
-select distinct Salary 
-from
-    (
-        select Salary,
-        dense_rank() over (order by Salary desc) as r
-        from Employee
-     ) t
-where r=2
-    ),null) as SecondHighestSalary
+		select isnull(
+		(
+		select distinct Salary 
+		from
+		    (
+		        select Salary,
+		        dense_rank() over (order by Salary desc) as r
+		        from Employee
+		     ) t
+		where r=2
+		    ),null) as SecondHighestSalary
     
 (3)
 
-select 
-IFNULL(
-(select distinct Salary from Employee order by Salary Desc limit 1 offset 1),null)
-as SecondHighestSalary
+		select 
+		IFNULL(
+		(select distinct Salary from Employee order by Salary Desc limit 1 offset 1),null)
+		as SecondHighestSalary
