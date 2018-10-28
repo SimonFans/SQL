@@ -1,19 +1,19 @@
 The Trips table holds all taxi trips. Each trip has a unique Id, while Client_Id and Driver_Id are both foreign keys to the Users_Id at the Users table. Status is an ENUM type of (‘completed’, ‘cancelled_by_driver’, ‘cancelled_by_client’).
 
-+----+-----------+-----------+---------+--------------------+----------+
-| Id | Client_Id | Driver_Id | City_Id |        Status      |Request_at|
-+----+-----------+-----------+---------+--------------------+----------+
-| 1  |     1     |    10     |    1    |     completed      |2013-10-01|
-| 2  |     2     |    11     |    1    | cancelled_by_driver|2013-10-01|
-| 3  |     3     |    12     |    6    |     completed      |2013-10-01|
-| 4  |     4     |    13     |    6    | cancelled_by_client|2013-10-01|
-| 5  |     1     |    10     |    1    |     completed      |2013-10-02|
-| 6  |     2     |    11     |    6    |     completed      |2013-10-02|
-| 7  |     3     |    12     |    6    |     completed      |2013-10-02|
-| 8  |     2     |    12     |    12   |     completed      |2013-10-03|
-| 9  |     3     |    10     |    12   |     completed      |2013-10-03| 
-| 10 |     4     |    13     |    12   | cancelled_by_driver|2013-10-03|
-+----+-----------+-----------+---------+--------------------+----------+
+		+----+-----------+-----------+---------+--------------------+----------+
+		| Id | Client_Id | Driver_Id | City_Id |        Status      |Request_at|
+		+----+-----------+-----------+---------+--------------------+----------+
+		| 1  |     1     |    10     |    1    |     completed      |2013-10-01|
+		| 2  |     2     |    11     |    1    | cancelled_by_driver|2013-10-01|
+		| 3  |     3     |    12     |    6    |     completed      |2013-10-01|
+		| 4  |     4     |    13     |    6    | cancelled_by_client|2013-10-01|
+		| 5  |     1     |    10     |    1    |     completed      |2013-10-02|
+		| 6  |     2     |    11     |    6    |     completed      |2013-10-02|
+		| 7  |     3     |    12     |    6    |     completed      |2013-10-02|
+		| 8  |     2     |    12     |    12   |     completed      |2013-10-03|
+		| 9  |     3     |    10     |    12   |     completed      |2013-10-03| 
+		| 10 |     4     |    13     |    12   | cancelled_by_driver|2013-10-03|
+		+----+-----------+-----------+---------+--------------------+----------+
 The Users table holds all users. Each user has an unique Users_Id, and Role is an ENUM type of (‘client’, ‘driver’, ‘partner’).
 
 		+----------+--------+--------+
