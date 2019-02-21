@@ -23,11 +23,9 @@ For example, given the above Scores table, your query should generate the follow
 		| 3.50  | 4    |
 		+-------+------+
 		
-- solution: 
+- solution:  (MSQL Server)
 
 Idea: using analytic function dense_rank() 
 
-		select t.Score, t.rank_number as Rank
-		from 
-		(select Score, dense_rank() over (order by Score desc) as rank_number
-		from Scores) t
+select Score, dense_rank() over (order by Score desc) as Rank
+from Scores
