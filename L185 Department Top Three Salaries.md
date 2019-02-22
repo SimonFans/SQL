@@ -34,14 +34,15 @@ Write a SQL query to find employees who earn the top three salaries in each of t
 
 <1> Regular method:
 
-		SELECT d.Name AS Department, 
-		e.Name AS Employee, 
-		e.Salary FROM Employee e
-		JOIN Department d on e.DepartmentId = d.Id
-		WHERE (SELECT COUNT(DISTINCT Salary) 
-		FROM Employee WHERE Salary > e.Salary
-		AND DepartmentId = d.Id) < 3 
-		ORDER BY d.Name, e.Salary DESC;
+select d.Name Department, e1.Name Employee, e1.Salary
+from Employee e1 
+join Department d
+on e1.DepartmentId = d.Id
+where (select count(distinct(e2.Salary)) 
+                  from Employee e2 
+                  where e2.Salary > e1.Salary 
+                  and e1.DepartmentId = e2.DepartmentId
+                  ) < 3;
 		
 <2> Analytic function:
 
