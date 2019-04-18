@@ -25,7 +25,7 @@ For example, given the above Employee table, the query should return 200 as the 
 
 (2)
 
-		select isnull(
+		select ifnull(
 		(
 		select distinct Salary 
 		from
