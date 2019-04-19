@@ -36,7 +36,7 @@ Write a SQL query to find employees who have the highest salary in each of the d
 		ON tb1.DepartmentId=tb2.Id
 		WHERE (tb2.Id,tb1.Salary) in (SELECT DepartmentId,max(Salary)
            	FROM Employee
-            	GROUP BY DepartmentId);
+		GROUP BY DepartmentId);
 
 		
 <2> Analytic function:
