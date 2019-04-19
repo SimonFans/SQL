@@ -31,16 +31,13 @@ For the sample input, the output is:
 
 <1> Using flow control statement CASE WHEN
 
-		select 
-		(case when mod(id,2)!=0 and count!=id then id+1
-		       when mod(id,2)!=0 and count=id then id
-		       else id-1 
-		        end) as id,
-		        student
-		        from seat,
-		(select count(*) as count
-		from seat) seat_counts
-		order by id 
+		SELECT (CASE WHEN mod(id,2)=1 AND id=counts then id
+             		     WHEN mod(id,2)=1 AND id!=counts then id+1
+             		     ELSE id-1 
+       			END) as id, 
+       			student
+		FROM seat, (SELECT count(*) as counts FROM seat) as counts
+		ORDER BY id;
 		
 		
 <2> Using bit manipulation and COALESCE()
