@@ -29,16 +29,15 @@ Write a SQL query to find employees who have the highest salary in each of the d
 
 <1> Regular method:
 
-		select d.Name as Department, 
-		e.Name as Employee, 
-		e.Salary as Salary
-		from Department d join Employee e 
-		on d.Id=e.DepartmentId 
-		where (e.DepartmentId,e.Salary)
-		in
-		(select DepartmentId, max(Salary) as Salary 
-		from Employee 
-		group by DepartmentId )  
+		
+		SELECT tb2.Name as Department, tb1.Name as Employee, tb1.Salary as Salary
+		FROM Employee as tb1
+		LEFT JOIN Department tb2
+		ON tb1.DepartmentId=tb2.Id
+		WHERE (tb2.Id,tb1.Salary) in (SELECT DepartmentId,max(Salary)
+           	FROM Employee
+            	GROUP BY DepartmentId);
+
 		
 <2> Analytic function:
 
