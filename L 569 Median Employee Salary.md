@@ -35,6 +35,22 @@ Write a SQL query to find the median salary of each company. Bonus points if you
 
 - solution: 
 
+<* not use built in function>
+
+SELECT tb1.Id,tb1.Company,tb1.Salary
+FROM Employee as tb1
+LEFT JOIN Employee as tb2
+on tb1.Company=tb2.Company
+GROUP BY tb1.Company,tb1.Salary
+Having SUM(CASE WHEN tb1.Salary=tb2.Salary THEN 1 ELSE 0 END)>= ABS(SUM(CASE WHEN tb1.Salary>tb2.Salary then 1 when tb1.Salary<tb2.Salary then -1 else 0 end))
+ORDER BY tb1.Id;
+
+[1,2,3,4,5,6]  => median number is 3 and 4
+3 appears one time, 4 appears one time
+greater than 3 has 3 numbers sum()=>3 smaller than 3 has 2 numbers sum()=> -2  total =1  thus 1>=abs(1)
+greater than 4 has 2 numbers sum()=>2 smaller than 4 has 3 numbers sum()=> -3  total =1  thus 1>=abs(1)
+
+
 <1>
 
 		select t.Id as Id, 
