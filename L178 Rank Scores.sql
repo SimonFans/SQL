@@ -23,7 +23,18 @@ For example, given the above Scores table, your query should generate the follow
 		| 3.50  | 4    |
 		+-------+------+
 		
-- solution:  (MSQL Server)
+- solution:  
+
+(MySQL)
+
+SELECT tb1.Score as Score, (SELECT COUNT(DISTINCT tb2.Score)
+                           FROM Scores tb2
+                           WHERE tb2.Score> tb1.Score) +1 as Rank
+FROM Scores tb1
+ORDER BY tb1.SCore DESC
+
+
+(MSQL Server)
 
 Idea: using analytic function dense_rank() 
 
