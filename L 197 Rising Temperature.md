@@ -28,14 +28,12 @@ For example, return the following Ids for the above Weather table:
 		TO_DAYS(wt1.RecordDate)-TO_DAYS(wt2.RecordDate)=1;
 		
 		
-<2> Join & DATEDIFF()
+<2> Join & DATEDIFF() <*>
 
-		SELECT
-	    weather.id AS 'Id'
-		FROM
-	    weather JOIN
-	    weather w ON DATEDIFF(weather.date, w.date) = 1
-	    AND weather.Temperature > w.Temperature
+		SELECT tb1.Id as Id
+		FROM Weather tb1
+		INNER JOIN Weather tb2
+		ON tb1.Temperature > tb2.Temperature AND DATEDIFF(tb1.RecordDate,tb2.RecordDate)=1;
 	    
 <3> Analytic functions:
 
