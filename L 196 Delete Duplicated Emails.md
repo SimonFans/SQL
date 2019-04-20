@@ -18,6 +18,7 @@ For example, after running your query, the above Person table should have the fo
 		+----+------------------+
 
 - solution:
+
 (1)
 		delete from Person
 		where Id not in
