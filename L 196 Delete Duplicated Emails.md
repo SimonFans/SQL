@@ -18,7 +18,7 @@ For example, after running your query, the above Person table should have the fo
 		+----+------------------+
 
 - solution:
-
+(1)
 		delete from Person
 		where Id not in
 		(select p.Id 
@@ -26,3 +26,10 @@ For example, after running your query, the above Person table should have the fo
 		(select min(Id) as Id from Person
 		group by Email) p
  		)
+		
+		
+(2)
+		
+		DELETE p1
+		FROM Person as p1, Person as p2
+		WHERE p1.Email=p2.Email and p1.Id>p2.Id;
