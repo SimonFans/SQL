@@ -40,3 +40,14 @@ Idea: using analytic function dense_rank()
 
 select Score, dense_rank() over (order by Score desc) as Rank
 from Scores
+
+
+
+create table if not exists scores(Id integer, Score double);
+
+insert into scores(Id,Score) values (1,3.50);
+insert into scores(Id,Score) values (2,3.65);
+insert into scores(Id,Score) values (3,4.00);
+insert into scores(Id,Score) values (4,3.85);
+insert into scores(Id,Score) values (5,4.00);
+insert into scores(Id,Score) values (6,3.65);
