@@ -28,10 +28,10 @@ For example, given the above Scores table, your query should generate the follow
 (MySQL)
 
 SELECT tb1.Score as Score, (SELECT COUNT(DISTINCT tb2.Score)
-                           FROM Scores tb2
-                           WHERE tb2.Score> tb1.Score) +1 as Rank
-FROM Scores tb1
-ORDER BY tb1.SCore DESC
+                           FROM scores as tb2
+                           WHERE tb2.Score> tb1.Score) +1 as 'rank' 
+FROM scores as tb1
+ORDER BY tb1.Score DESC
 
 
 (MSQL Server)
