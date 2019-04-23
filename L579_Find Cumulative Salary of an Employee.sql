@@ -42,9 +42,9 @@ left join employees2 e3 on e3.Id=e2.Id and e3.Month=e2.Month-1
 (
 select id,max(Month) as MaxMonth from employees2 group by Id having(count(*)>1)
 )
-select c.Id,c.Month,c.CumulativeSalary from cumulativeSalary c join MostRecentMonth m on c.Id=m.Id and m.MaxMonth>c.Month
+select c.Id,c.Month,c.CumulativeSalary from cumulativeSalary c join MostRecentMonth m on c.Id=m.Id
+WHERE m.MaxMonth>c.Month
 order by Id asc, Month desc
-
 
 
 ###
