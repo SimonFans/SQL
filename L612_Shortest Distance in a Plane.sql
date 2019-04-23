@@ -25,9 +25,21 @@ select * from point_2d;
 SELECT Round(SQRT(MIN(POW(p1.x-p2.x,2)+POW(p1.y-p2.y,2))),2) as shortest
 FROM point_2d as p1
 JOIN point_2d as p2
-ON p1.x != p2.x OR p1.y != p2.y
+ON p1.x != p2.x OR p1.y != p2.y;
 
 
+                      
+# avoid to calculate the duplicated one
+SELECT
+    ROUND(SQRT(MIN((POW(p1.x - p2.x, 2) + POW(p1.y - p2.y, 2)))),2) AS shortest
+FROM
+    point_2d p1
+        JOIN
+    point_2d p2 ON (p1.x <= p2.x AND p1.y < p2.y)
+        OR (p1.x <= p2.x AND p1.y > p2.y)
+        OR (p1.x < p2.x AND p1.y = p2.y);
+               
+               
 /*
 create table point_2d (x int, y int); 
 
