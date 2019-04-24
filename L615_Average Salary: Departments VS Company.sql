@@ -39,6 +39,7 @@ The average salary of department '2' is (6000 + 10000)/2 = 8000, which is the av
 With he same formula for the average salary comparison in February, the result is 'same' since both the department '1' and '2' have the same average salary with the company, which is 7000.
 
 Solution:
+// Method1 traditional writing two tables separately
 
 SELECT department_salary.pay_month, department_salary.department_id,
 (CASE WHEN department_salary.department_avg>company_salary.company_avg
@@ -63,8 +64,29 @@ GROUP BY date_format(pay_date,'%Y-%m')
 ) as company_salary
 ON department_salary.pay_month=company_salary.pay_month
 
+//Method2 using With <table_name> AS (), <table_name> AS () SELECT.....
 
-
+WITH department_salary AS (
+  SELECT e.department_id,date_format(s.pay_date,'%Y-%m') as        pay_month,AVG(s.amount) as department_avg
+FROM Salary s
+JOIN employee e 
+ON s.employee_id=e.employee_id
+GROUP BY e.department_id, date_format(s.pay_date,'%Y-%m')),
+  company_salary AS (
+    SELECT date_format(pay_date,'%Y-%m') as pay_month,
+AVG(amount) as company_avg
+FROM Salary
+GROUP BY date_format(pay_date,'%Y-%m'))
+SELECT department_salary.pay_month, department_salary.department_id,
+(CASE WHEN department_salary.department_avg>company_salary.company_avg
+THEN 'higher'
+WHEN department_salary.department_avg<company_salary.company_avg
+THEN 'lower'
+ELSE 'same' END) as comparison
+FROM department_salary
+JOIN company_salary
+ON department_salary.pay_month=company_salary.pay_month
+                     
 
 /*
 CREATE TABLE Salary (id int, employee_id int, amount int, pay_date date);
