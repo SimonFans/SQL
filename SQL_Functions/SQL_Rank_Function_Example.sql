@@ -28,6 +28,8 @@ nnn         11      20000          2          2          2
 kkk         12      30000          1          1          1
 
 
-RANK() there will be gaps between the integer values when there is a tie. But the DENSE_RANK() will assign consecutive ranks to the values in the case of a tie, so there will be no gaps between the integer values in the case of a tie.
+RANK() there will be gaps between the integer values when there is a tie. 
+But the DENSE_RANK() will assign consecutive ranks to the values in the case of a tie, 
+so there will be no gaps between the integer values in the case of a tie.
 
 When two or more values within a set have the same value then that is called a “tie”.
