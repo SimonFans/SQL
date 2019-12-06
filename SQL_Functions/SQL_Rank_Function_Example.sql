@@ -33,3 +33,5 @@ But the DENSE_RANK() will assign consecutive ranks to the values in the case of 
 so there will be no gaps between the integer values in the case of a tie.
 
 When two or more values within a set have the same value then that is called a “tie”.
+
+Rank() & DENSE_RANK() must have order by, otherwise it doesn't make any sense.
