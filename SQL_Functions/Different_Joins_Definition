@@ -1,0 +1,15 @@
+1. Inner join:
+
+answer: select all records from table A and table B when the join condition is met.
+
+2: left join:
+
+answer: select all records from table A along with rcords from table B for which the join condition is met
+
+3: right join:
+
+answer: select all records from table B along with records from table A for which the join condition is met
+
+4: full (outer) join:
+
+answer: select all records from table A and table B, regardless of whether the join condition is met or not
