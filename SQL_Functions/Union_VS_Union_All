@@ -1,0 +1,2 @@
+UNION removes duplicate records (where all columns in the results are the same), 
+UNION ALL does not.
