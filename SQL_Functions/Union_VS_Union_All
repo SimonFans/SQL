@@ -1,2 +1,27 @@
 UNION removes duplicate records (where all columns in the results are the same), 
 UNION ALL does not.
+
+Union example:
+
+SELECT 'foo' AS bar UNION SELECT 'foo' AS bar
+
+Result:
+
++-----+
+| bar |
++-----+
+| foo |
++-----+
+
+
+UNION ALL example:
+
+SELECT 'foo' AS bar UNION ALL SELECT 'foo' AS bar
+Result:
+
++-----+
+| bar |
++-----+
+| foo |
+| foo |
++-----+
