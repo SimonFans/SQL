@@ -4,7 +4,7 @@ answer: select all records from table A and table B when the join condition is m
 
 2: left join:
 
-answer: select all records from table A along with rcords from table B for which the join condition is met
+answer: select all records from table A along with records from table B for which the join condition is met
 
 3: right join:
 
