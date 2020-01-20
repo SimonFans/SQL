@@ -19,18 +19,18 @@ It is guaranteed there is only 1 people having the most friends.
 The friend request could only been accepted once, which mean there is no multiple records with the same requester_id and accepter_id value.
 
 
-create table request_accepted1(requester_id integer,accepter_id integer, accept_date date);
-insert into request_accepted1(requester_id,accepter_id,accept_date) values (1,2,'2016-06-03');
-insert into request_accepted1(requester_id,accepter_id,accept_date) values (1,3,'2016-06-08');
-insert into request_accepted1(requester_id,accepter_id,accept_date) values (2,3,'2016-06-03');
-insert into request_accepted1(requester_id,accepter_id,accept_date) values (3,4,'2016-06-03');
+create table request_accepted(requester_id integer,accepter_id integer, accept_date date);
+insert into request_accepted(requester_id,accepter_id,accept_date) values (1,2,'2016-06-03');
+insert into request_accepted(requester_id,accepter_id,accept_date) values (1,3,'2016-06-08');
+insert into request_accepted(requester_id,accepter_id,accept_date) values (2,3,'2016-06-03');
+insert into request_accepted(requester_id,accepter_id,accept_date) values (3,4,'2016-06-03');
 
 
-select t.requester_id, count(*) as friend_nums
+select t.requester_id as id, count(*) as num
 from
 (
   select requester_id, accepter_id
-  from request_accepted1
+  from request_accepted
   
   union all
   
