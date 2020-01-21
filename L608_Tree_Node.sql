@@ -31,14 +31,15 @@ Write a query to print the node id and the type of the node. Sort your output by
 
 Solution:
 
-SELECT id as Id, 
-(CASE WHEN tree.id=(SELECT tb1.id FROM tree tb1 WHERE tb1.p_id=NULL)
-THEN 'ROOT'
-WHEN tree.id in (SELECT tb1.p_id FROM tree tb1)
-THEN 'INNER'
-ELSE 'LEAF'
-END) AS Type
-FROM tree 
+select 
+    tree.id,
+    case when tree.id=(select t1.id from tree t1 where t1.p_id is null)
+    then 'Root'
+    when tree.id in (select t1.p_id from tree t1)
+    then 'Inner'
+    else 'Leaf'
+    End as Type
+from tree
 
 /*
 create table tree (id int,p_id int);
