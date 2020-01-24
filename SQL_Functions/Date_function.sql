@@ -58,7 +58,7 @@ select curdate(),date_sub(curdate(), interval 5 day) as five_days_ago
 +------------+---------------+
 | curdate()  | five_days_ago |
 +------------+---------------+
-| 2019-10-16 | 2019-05-16    |
+| 2019-10-16 | 2019-10-11    |
 +------------+---------------+
 
 SELECT DATEDIFF('2014-06-05','2014-08-05') AS DiffDate
