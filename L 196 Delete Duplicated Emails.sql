@@ -21,12 +21,15 @@ For example, after running your query, the above Person table should have the fo
 
 (1)
 		delete from Person
-		where Id not in
-		(select p.Id 
- 		from 
-		(select min(Id) as Id from Person
-		group by Email) p
- 		)
+		where Id not in (
+    			select Id
+    			from
+    			(
+    			select min(Id) as Id
+    			from Person
+    			group by Email
+    			) t
+			)
 		
 		
 (2)
