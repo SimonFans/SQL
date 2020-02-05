@@ -12,4 +12,8 @@ answer: select all records from table B along with records from table A for whic
 
 4: full (outer) join:
 
-answer: select all records from table A and table B, regardless of whether the join condition is met or not
+answer: The joined table will contain all records from both the tables and fill in NULLs for missing matches on either side.
+
+5. cross join:
+
+answer: A cross join produces a cartesian product between the two tables, returning all possible combinations of all rows.
