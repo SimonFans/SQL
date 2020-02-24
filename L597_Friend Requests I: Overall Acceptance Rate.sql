@@ -27,13 +27,29 @@ For the sample data above, your query should return the following result.
 
 -- solution 1:
 
-select 
+# Write your MySQL query statement below
+select
 round(
     ifnull(
-    (select count(*) from (select distinct requester_id, accepter_id from request_accepted) a) 
-/ 
-    (select count(*) from (select distinct sender_id, send_to_id from friend_request) b ),0),2) as accept_rate
-
+        (
+        select count(*)
+        from
+        (
+            select distinct requester_id, accepter_id from request_accepted
+        ) a 
+        )
+    /
+        (
+        select count(*)
+        from
+        (
+            select distinct sender_id, send_to_id from friend_request
+        ) b
+        )
+        ,0)
+    ,2) as 'accept_rate'
+    
+    
 -- solution 2:
 
 select coalesce(round
