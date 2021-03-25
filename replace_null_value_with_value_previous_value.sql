@@ -39,17 +39,14 @@ select * from test;
 
 
 with cte_step1 as (
-  select   ta.mysequence as ta_seq
-         , ta.mynumber as ta_num
-         , tb.mysequence as tb_seq
-         , tb.mynumber as tb_num
-         , max(tb.mynumber) over (partition by ta.mysequence) as mx
-  from test as ta
-  left join test as tb
-  on ta.mysequence >= tb.mysequence 
-  and tb.mynumber IS NOT NULL
+  select   mysequence
+         , mynumber
+         , sum(case when mynumber is NULL then 0 else 1 end) 
+           over (order by mysequence) as val
+  from test
 )
-  select   ta_seq
-         , COALESCE(ta_num, tb_num) as res
-  from cte_step1
-  where mx = tb_num
+  select   mysequence
+         , mynumber
+         , first_value(mynumber) 
+           over (partition by val order by mysequence) as res
+from cte_step1 
