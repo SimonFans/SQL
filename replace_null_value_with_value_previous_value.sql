@@ -38,15 +38,18 @@ INSERT INTO test VALUES(6, 2);
 select * from test;
 
 
-SELECT t1.mysequence, t1.mynumber AS ORIGINAL
-, (
-    SELECT t2.mynumber
-    FROM test t2
-    WHERE t2.mysequence = (
-        SELECT MAX(t3.mysequence)
-        FROM test t3
-        WHERE t3.mysequence <= t1.mysequence
-        AND mynumber IS NOT NULL
-       )
-) AS CALCULATED
-FROM test t1;
+with cte_step1 as (
+  select   ta.mysequence as ta_seq
+         , ta.mynumber as ta_num
+         , tb.mysequence as tb_seq
+         , tb.mynumber as tb_num
+         , max(tb.mynumber) over (partition by ta.mysequence) as mx
+  from test as ta
+  left join test as tb
+  on ta.mysequence >= tb.mysequence 
+  and tb.mynumber IS NOT NULL
+)
+  select   ta_seq
+         , COALESCE(ta_num, tb_num) as res
+  from cte_step1
+  where mx = tb_num
