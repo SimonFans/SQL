@@ -42,7 +42,30 @@ where (select count(distinct(e2.Salary))
                   from Employee e2 
                   where e2.Salary > e1.Salary 
                   and e1.DepartmentId = e2.DepartmentId
-                  ) < 3;
+                  ) < 3
+		    
+<1.2> Method without using subquery:
+		    
+WITH top_three_employees AS (
+    SELECT 
+        e1.ID
+      , e1.Name
+      , e1.DepartmentId
+      , e1.Salary
+      , COUNT(DISTINCT e2.Salary) AS rk
+    FROM Employee AS e1
+    INNER JOIN Employee AS e2
+        ON e1.DepartmentId = e2.DepartmentId AND e1.Salary <= e2.Salary
+    GROUP BY e1.ID, e1.Name, e1.DepartmentId, e1.Salary
+)
+SELECT 
+        d.Name AS Department
+      , t.Name AS Employee
+      , t.Salary AS Salary
+FROM Department AS d
+LEFT JOIN top_three_employees AS t
+    ON d.Id = t.DepartmentId
+WHERE t.rk <= 3
 		
 <2> Analytic function:
 
