@@ -47,3 +47,5 @@ For example, return the following Ids for the above Weather table:
 	from Weather) t
 	where t.Temperature>t.previous_temperature and 
 	t.gap=1 
+	
+Thank you
